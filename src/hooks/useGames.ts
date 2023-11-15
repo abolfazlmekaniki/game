@@ -32,19 +32,9 @@ const useGames = (gameQuery: GameQuery) =>
     },
     getNextPageParam:(lastpage,allPages)=>{
       return lastpage.next? allPages.length+1:undefined;
-    }
+    },
+    staleTime:24*60*60*1000
   })
-  // useData<Game>(
-  //   "/games",
-  //   {
-  //     params: {
-  //       genres: gameQuery.genre?.id,
-  //       platforms: gameQuery.platform?.id,
-  //       ordering: gameQuery.sortOrder,
-  //       search: gameQuery.searchText
-  //     },
-  //   },
-  //   [gameQuery]
-  // );
+
 
 export default useGames;

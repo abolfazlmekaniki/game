@@ -1,8 +1,8 @@
 export default [
   {
     "id": 1,
-    "name": "PC",
-    "slug": "pc",
+    "name": "PC1",
+    "slug": "pc1",
     "platforms": [
       {
         "id": 4,

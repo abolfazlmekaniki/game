@@ -3,14 +3,13 @@ import { BsChevronDown } from "react-icons/bs";
 import Platform  from "../hooks/usePlatform";
 import usePlatforms from "../hooks/usePlatforms";
 import usePlatform from "../hooks/usePlatform";
+import useGameQueryStore from "../store";
 
-interface Props { 
-  onSelectPlatform: (platform: Platform) => void;
-  selectedPlatformID?: number;
-}
 
-const PlatformSelector = ({ onSelectPlatform, selectedPlatformID }: Props) => {
+const PlatformSelector = () => {
   const { data, error } = usePlatforms();
+  const setselectedPlatformId = useGameQueryStore(s=>s.setPlatformId);
+  const selectedPlatformID = useGameQueryStore(s=>s.gameQuery.platformID);
   const selectedplatform = usePlatform(selectedPlatformID);
   if (error) return null;
   
@@ -20,7 +19,7 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatformID }: Props) => {
         {selectedplatform?.name || 'Platforms'}
       </MenuButton>
       <MenuList>
-        {data?.results.map(platform => <MenuItem onClick={() => onSelectPlatform(platform)} key={platform.id}>{platform.name}</MenuItem>)}
+        {data?.results.map(platform => <MenuItem onClick={() => setselectedPlatformId(platform.id )} key={platform.id}>{platform.name}</MenuItem>)}
       </MenuList>
     </Menu>
   );
